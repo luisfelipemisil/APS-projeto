@@ -2,10 +2,6 @@ const fachadaCol = require('./Fachada')
 
 class ColaboradorController {
 
-    constructor() {
-        
-    }
-
     cadastrarColaborador(cpf: string, senha: string, nome: string, email: string) {
         fachadaVet.cadastrarColaborador(cpf, senha, nome, email)
     }

@@ -1,13 +1,13 @@
 const fabricaRepositorioBDR = require('../models/repositorio/FabricaRepositorioBDR')
-import FilaCastracao from './collections/FilaCastracao';
+import ColaboradorCollection from '../models/collections/ColaboradorCollection';
+import FilaCastracao from '../models/collections/FilaCastracao';
 import Animal from "../models/entities/Animal";
-
+const ControladorVeterinario = require('./ControladorVeterinario')
 
 class ControladorFilaCastracao {
 
     filaCastracao: FilaCastracao
-    colaborador =  new ColaboradorController;
-    
+
     constructor() {
         this.filaCastracao = new FilaCastracao;
     }
@@ -17,16 +17,20 @@ class ControladorFilaCastracao {
         const animal = new Animal(nome, especie, endereco, descricao, filhote, status, 0, img);
 
         animal.id = this.filaCastracao.storeAnimal(animal)
+
+        const controlerVeterinario = new ControladorVeterinario();
+
+        controlerVeterinario.sendEmail("pedido avaliação animal id: " + String(animal.id) )
+        // falta implementar o resto aqui
     
     }
 
-
-    addPedidoAdocao (nomeCliente:string, cpf:string, descricaoPedido:string ,nome:string, especie:string, endereco:string, descricao:string, filhote: boolean, status: string, img:string) {
-
-        const animal = new Animal(nome, especie, endereco, descricao, filhote, status, 0, img);
-
-        animal.id = this.filaCastracao.storeAnimal(animal)
-    
+    sendEmail(texto: string){
+        const colaboradorCollection = new ColaboradorCollection();
+        var listCol = colaboradorCollection.listColaboradores();
+        listCol.forEach(element => {
+            console.log(element.email.email)
+        });
     }
 
     async listarAnimais() {

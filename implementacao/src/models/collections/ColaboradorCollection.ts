@@ -27,7 +27,7 @@ class ColaboradorCollection {
     return this.colaboradores.find( element => element.nome == nome );
   }
 
-  listVeterinarios(): Colaborador[]{
+  listColaboradores(): Colaborador[]{
     return this.colaboradores
   }
 

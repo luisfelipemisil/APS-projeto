@@ -1,7 +1,7 @@
-import Animal from "../models/entities/Animal";
 
-const ControladorUserClass = require('../models/ControladorUsuario')
-const ControladorFilaCastClass = require('../models/ControladorFilaCastracao')
+const ControladorUserClass = require('./ControladorUsuario')
+const ControladorVeterinario = require('./ControladorVeterinario')
+const ControladorFilaCastClass = require('./ControladorFilaCastracao')
 
 class Fachada {
 
@@ -21,14 +21,14 @@ class Fachada {
  
     static cadastrarVeterinario(cpf: string, senha: string, nome: string, email: string) {
 
-        let controladorUsuario = new ControladorUserClass();
+        let controladorUsuario = new ControladorVeterinario();
 
         controladorUsuario.cadastrarUsuario(cpf, senha, nome, email);
 
     }
 
     static async autenticarVeterinario(cpf: string, senha: string, nome: string, email: string) {
-        let controladorUsuario = new ControladorUserClass();
+        let controladorUsuario = new ControladorVeterinario();
 
         return await controladorUsuario.autenticarUsuario(cpf, senha, nome, email)
     }

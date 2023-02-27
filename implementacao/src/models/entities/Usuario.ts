@@ -1,9 +1,11 @@
+import Email from "./email";
+import CPF from "./CPF";
 class User {
   constructor(
-    cpf: string,
+    cpf: CPF,
     nome: string,
-    email: string,
-    senha:string
+    senha:string,
+    email: Email
   ) {
       this.cpf = cpf;
       this.senha = senha;
@@ -11,10 +13,10 @@ class User {
       this.email = email;
   }
 
-  cpf: string;
+  cpf: CPF;
   senha: string;
   nome: string;
-  email: string;
+  email: Email;
 }
 
   

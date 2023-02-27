@@ -3,7 +3,7 @@ const FabricaRepositorioBDRClass = require('../repositorio/FabricaRepositorioBDR
 import Veterinario from "../entities/Veterinario";
 
 class VeterinarioCollection {
-  veterinarios: Veterinario[] = [];
+  veterinarios: Array<Veterinario> = [];
     fabricaBDR : typeof FabricaRepositorioBDRClass;
     veterinarioBDR: typeof VeterinarioBDR;
 
@@ -25,7 +25,7 @@ class VeterinarioCollection {
     return this.veterinarios.find( element => element.nome == nome );
   }
 
-  listVeterinarios(): Veterinario[]{
+  listVeterinarios(): Array<Veterinario>{
     return this.veterinarios
   }
 

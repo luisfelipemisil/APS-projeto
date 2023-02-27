@@ -11,7 +11,7 @@ class ColaboradorBDR {
             const query = `INSERT INTO colaboradores (cpf, password, name, email) 
             VALUES ($1, $2, $3, $4) RETURNING cpf`;
 
-            const res = pool.query(query, [colaborador.cpf, colaborador.senha, colaborador.nome, colaborador.email])
+            const res = pool.query(query, [colaborador.cpf.cpf, colaborador.senha, colaborador.nome, colaborador.email.email])
             return res;
         } catch (err) {
             return err;
@@ -23,9 +23,9 @@ class ColaboradorBDR {
     async findUser(colaborador: Colaborador) {
 
         try {
-            const query = `SELECT cpf, password FROM users WHERE cpf = $1`;
+            const query = `SELECT cpf, password FROM colaboradores WHERE cpf = $1`;
 
-            const result = await pool.query(query, [colaborador.cpf])
+            const result = await pool.query(query, [colaborador.cpf.cpf])
 
             if (result.rows.length == 0) { return "user not found" }
 
@@ -40,9 +40,9 @@ class ColaboradorBDR {
     }
 
     async authenticateUser(colaborador: Colaborador) {
-        const query = `SELECT cpf, password FROM users WHERE cpf = $1`;
+        const query = `SELECT cpf, password FROM colaboradores WHERE cpf = $1`;
 
-        const result = await pool.query(query, [colaborador.cpf])
+        const result = await pool.query(query, [colaborador.cpf.cpf])
 
         if (result.rows.length == 0) { return "user not found" }
 

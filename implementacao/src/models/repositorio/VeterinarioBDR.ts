@@ -11,7 +11,7 @@ class VeterinarioBDR {
             const query = `INSERT INTO veterinario (cpf, password, name, email) 
             VALUES ($1, $2, $3, $4) RETURNING cpf`;
 
-            const res = pool.query(query, [veterinario.cpf, veterinario.senha, veterinario.nome, veterinario.email])
+            const res = pool.query(query, [veterinario.cpf.cpf, veterinario.senha, veterinario.nome, veterinario.email.email])
             return res;
         } catch (err) {
             return err;
@@ -23,7 +23,7 @@ class VeterinarioBDR {
     async findUser(veterinario: Veterinario) {
 
         try {
-            const query = `SELECT cpf, password FROM users WHERE cpf = $1`;
+            const query = `SELECT cpf, password FROM veterinarios WHERE cpf = $1`;
 
             const result = await pool.query(query, [veterinario.cpf])
 
@@ -40,7 +40,7 @@ class VeterinarioBDR {
     }
 
     async authenticateUser(veterinario: Veterinario) {
-        const query = `SELECT cpf, password FROM users WHERE cpf = $1`;
+        const query = `SELECT cpf, password FROM veterinario WHERE cpf = $1`;
 
         const result = await pool.query(query, [veterinario.cpf])
 
