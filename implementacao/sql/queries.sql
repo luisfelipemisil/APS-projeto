@@ -8,3 +8,11 @@ CREATE TABLE animais (
     id int PRIMARY KEY,
     img varchar(20)
 );
+
+CREATE SEQUENCE table_animal_id_seq;
+
+ALTER TABLE animais
+    ALTER id set NOT NULL,
+    ALTER id set DEFAULT nextval('table_animal_id_seq');
+
+ALTER SEQUENCE table_animal_id_seq owned by animais.id;
