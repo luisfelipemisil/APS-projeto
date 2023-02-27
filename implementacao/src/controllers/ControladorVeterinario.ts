@@ -1,5 +1,5 @@
 import VeterinarioCollection from '../models/collections/VeterinarioCollection';
-import Email from '../models/entities/email';
+import Email from '../models/entities/Email';
 import CPF from '../models/entities/CPF';
 import Veterinario from '../models/entities/Veterinario';
 
@@ -38,4 +38,4 @@ class ControladorVeterinario {
 
 }
 
-module.exports = ControladorVeterinario
+export default ControladorVeterinario

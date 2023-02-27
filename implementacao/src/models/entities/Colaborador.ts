@@ -1,4 +1,4 @@
-import Email from "./email";
+import Email from "./Email";
 import CPF from "./CPF";
 class Colaborador {
     

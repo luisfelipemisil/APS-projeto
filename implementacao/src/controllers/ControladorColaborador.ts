@@ -1,6 +1,6 @@
 import ColaboradorCollection from '../models/collections/ColaboradorCollection';
 import Colaborador from '../models/entities/Colaborador';
-import Email from '../models/entities/email';
+import Email from '../models/entities/Email';
 import CPF from '../models/entities/CPF';
 
 class ControladorColaborador {
@@ -35,4 +35,4 @@ class ControladorColaborador {
 
 }
 
-module.exports = ControladorColaborador
+export default ControladorColaborador

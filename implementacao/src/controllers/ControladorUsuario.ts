@@ -1,6 +1,6 @@
 import UsuarioCollection from '../models/collections/UsuarioCollection';
 import User from '../models/entities/Usuario';
-import Email from '../models/entities/email';
+import Email from '../models/entities/Email';
 import CPF from '../models/entities/CPF';
 
 
@@ -30,4 +30,4 @@ class ControladorUsuario {
 
 }
 
-module.exports = ControladorUsuario
+export default ControladorUsuario

@@ -1,10 +1,12 @@
 const fabricaRepositorioBDR = require('../models/repositorio/FabricaRepositorioBDR')
-import ColaboradorCollection from '../models/collections/ColaboradorCollection';
 import FilaCastracao from '../models/collections/FilaCastracao';
 import Animal from "../models/entities/Animal";
-const ControladorVeterinario = require('./ControladorVeterinario')
+import ControladorVeterinario from './ControladorVeterinario';
+import ControladorColaborador from './ControladorColaborador';
+import { Observable, Observer } from '../observer/observer';
+import Veterinario from '../models/entities/Veterinario';
 
-class ControladorFilaCastracao {
+class ControladorFilaCastracao implements Observer {
 
     filaCastracao: FilaCastracao
 
@@ -25,14 +27,6 @@ class ControladorFilaCastracao {
     
     }
 
-    sendEmail(texto: string){
-        const colaboradorCollection = new ColaboradorCollection();
-        var listCol = colaboradorCollection.listColaboradores();
-        listCol.forEach(element => {
-            console.log(element.email.email)
-        });
-    }
-
     async listarAnimais() {
         return await this.filaCastracao.listAniamais()
     }
@@ -44,6 +38,13 @@ class ControladorFilaCastracao {
     async updateAnimal(id: number, name: string, status: string) {
         return await this.filaCastracao.updateAnimal(id, name, status)
     }
+
+    update(observable: Observable): void {
+        if (observable instanceof Veterinario) {
+            const controladorColaborador = new ControladorColaborador();
+            controladorColaborador.sendEmail("Animal pronto para busca: " + String());
+        }
+    }
 }
 
-module.exports = ControladorFilaCastracao
+export default ControladorFilaCastracao
