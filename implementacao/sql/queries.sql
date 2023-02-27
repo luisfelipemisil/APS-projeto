@@ -9,6 +9,27 @@ CREATE TABLE animais (
     img varchar(20)
 );
 
+CREATE TABLE users (
+    name varchar(20),
+    cpf varchar(11) PRIMARY KEY,
+    senha varchar(20),
+    email varchar(20)
+);
+
+CREATE TABLE veterinarios (
+    name varchar(20),
+    cpf varchar(11) PRIMARY KEY,
+    senha varchar(20),
+    email varchar(20)
+);
+
+CREATE TABLE colaboradores (
+    name varchar(20),
+    cpf varchar(11) PRIMARY KEY,
+    senha varchar(20),
+    email varchar(20)
+);
+
 CREATE SEQUENCE table_animal_id_seq;
 
 ALTER TABLE animais

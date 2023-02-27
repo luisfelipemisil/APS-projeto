@@ -3,6 +3,8 @@ class FabricaRepositorioAbstrata {
     constructor() {}
 
     criarRepositorioUsuario() {}
+    criarRepositorioVaterinario() {}
+    criarRepositorioUsuarioColaborador() {}
 
 }
 

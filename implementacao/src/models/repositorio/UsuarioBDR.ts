@@ -8,10 +8,10 @@ class UsuarioBDR {
     async storeUser(user: User) {
 
         try {
-            const query = `INSERT INTO users (cpf, password) 
-            VALUES ($1, $2) RETURNING cpf`;
+            const query = `INSERT INTO users (cpf, password, name, email) 
+            VALUES ($1, $2, $3, $4) RETURNING cpf`;
 
-            const res = pool.query(query, [user.cpf, user.senha])
+            const res = pool.query(query, [user.cpf, user.senha, user.nome, user.email])
             return res;
         } catch (err) {
             return err;

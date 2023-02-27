@@ -6,27 +6,38 @@ import Animal from "../models/entities/Animal";
 class ControladorFilaCastracao {
 
     filaCastracao: FilaCastracao
-
+    colaborador =  new ColaboradorController;
+    
     constructor() {
         this.filaCastracao = new FilaCastracao;
     }
 
-    addPedidoResgate (nome:string, especie:string, endereco:string, descricao:string, filhote: boolean, status: string, img:string): number {
+    addPedidoResgate (nome:string, especie:string, endereco:string, descricao:string, filhote: boolean, status: string, img:string) {
 
         const animal = new Animal(nome, especie, endereco, descricao, filhote, status, 0, img);
 
-        this.filaCastracao.storeAnimal(animal)
+        animal.id = this.filaCastracao.storeAnimal(animal)
+    
+    }
+
+
+    addPedidoAdocao (nomeCliente:string, cpf:string, descricaoPedido:string ,nome:string, especie:string, endereco:string, descricao:string, filhote: boolean, status: string, img:string) {
+
+        const animal = new Animal(nome, especie, endereco, descricao, filhote, status, 0, img);
+
+        animal.id = this.filaCastracao.storeAnimal(animal)
+    
     }
 
     async listarAnimais() {
-        return await this.filaCastracao.listAniamis()
+        return await this.filaCastracao.listAniamais()
     }
 
-    async deletarPrato(id: number) {
+    async deletarAnimal(id: number) {
         return await this.filaCastracao.deletarAnimais(id)
     }
 
-    async updatePrato(id: number, name: string, status: string) {
+    async updateAnimal(id: number, name: string, status: string) {
         return await this.filaCastracao.updateAnimal(id, name, status)
     }
 }

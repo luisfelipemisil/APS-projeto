@@ -1,4 +1,4 @@
-const fachada = require('./Fachada')
+const fachadaUser = require('./Fachada')
 
 class UserController {
 
@@ -6,12 +6,12 @@ class UserController {
         
     }
 
-    cadastrarUsuario(cpf: string, senha: string) {
-         fachada.cadastrarUsuario(cpf, senha)
+    cadastrarUsuario(cpf: string, senha: string, nome: string, email: string) {
+        fachadaUser.cadastrarUsuario(cpf, senha, nome, email)
     }
 
-    async autenticarUsuario(cpf: string, senha: string) {
-        return await fachada.autenticarUsuario(cpf, senha);
+    async autenticarUsuario(cpf: string, senha: string, nome: string, email: string) {
+        return await fachadaUser.autenticarUsuario(cpf, senha, nome, email);
     }
 
 }
