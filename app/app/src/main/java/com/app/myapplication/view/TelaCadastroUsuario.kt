@@ -7,6 +7,6 @@ import com.app.myapplication.R
 class TelaCadastroUsuario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela_cadastro_usuario)
+        setContentView(R.layout.activity_tela_usuario)
     }
 }
