@@ -15,7 +15,7 @@
             android:name=".view.TelaAdocao"
             android:exported="false" />
         <activity
-            android:name=".view.TelaCadastroUsuario"
+            android:name=".view.TelaUsuario"
             android:exported="false" />
         <activity
             android:name=".view.TelaDoacao"

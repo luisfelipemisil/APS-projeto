@@ -10,6 +10,7 @@ import com.app.myapplication.model.entitie.Email
 import com.app.myapplication.model.entitie.User
 import com.app.myapplication.view.TelaDoacao
 import com.app.myapplication.view.TelaPedido
+import com.app.myapplication.view.TelaUsuario
 
 class ControllerTelaDoacao(tela: TelaDoacao) {
     var telaDoacao: TelaDoacao = tela
@@ -95,8 +96,9 @@ class ControllerTelaDoacao(tela: TelaDoacao) {
         if (!resposta){
             this.telaDoacao.cadastroMsg.setTextColor(Color.RED)
             this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
+        }else{
+            this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",nome))
         }
-
     }
 
 }

@@ -1,9 +1,6 @@
 package com.app.myapplication.controller
 
-import android.content.Context
 import android.content.Intent
-import android.view.View
-import androidx.core.content.ContextCompat.startActivity
 import com.app.myapplication.view.*
 
 class ADMController(tela: ADM) {
@@ -19,7 +16,7 @@ class ADMController(tela: ADM) {
     }
 
     fun goToCadastroUsuario(){
-        telaADM.startActivity(Intent(telaADM, TelaCadastroUsuario::class.java))
+        telaADM.startActivity(Intent(telaADM, TelaUsuario::class.java))
     }
 
     fun goToDoacao(){

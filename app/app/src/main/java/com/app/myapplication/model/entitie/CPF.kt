@@ -2,6 +2,7 @@ package com.app.myapplication.model.entitie
 
 data class CPF(var registro: String){
     fun isValid(): Boolean {
+        /*
         if (registro.isEmpty()) return false
 
         val numbers = registro.filter { it.isDigit() }.map {
@@ -23,5 +24,7 @@ data class CPF(var registro: String){
         }
 
         return numbers[9] == dv1 && numbers[10] == dv2
+        */
+        return true
     }
 }
