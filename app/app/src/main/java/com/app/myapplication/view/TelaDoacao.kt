@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.contentValuesOf
 import com.app.myapplication.R
 import com.app.myapplication.controller.ControllerTelaDoacao
 
@@ -31,7 +30,7 @@ class TelaDoacao : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela_doacao)
+        setContentView(R.layout.activity_tela_home)
 
         botaoPedidos = findViewById(R.id.botaoPedidos)
         botaoLogin = findViewById(R.id.botaoCadastroLogin)

@@ -1,6 +1,6 @@
 package com.app.myapplication.model.entitie
 
-data class Clientes(
+data class Cliente(
     var nome: String,
     var email: Email
 )

@@ -4,10 +4,13 @@ data class Animal(
     var nome:String,
     var status: String,
     var idade: Int,
-    var raça: String,
+    var raca: String,
+    var gato : Boolean,
+    var cachorro: Boolean,
     var filhote: Boolean,
-    var endereço: String,
-    var cliete: Clientes
+    var endereco: String,
+    var descricao: String,
+    var cliete: Cliente
 ){
     fun mudarStatus(status: String){
         this.status = status
