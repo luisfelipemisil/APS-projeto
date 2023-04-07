@@ -56,7 +56,7 @@ class ControllerTelaPedido(tela: TelaPedido) {
         val email = Email(emailCliente)
         val cliente = Cliente(nomeCliente, email)
         val animal = Animal(nomeAnimal, "em analise", idadeAnimal.toInt(), racaAnimal, gato, cachorro, filhote, endereco, estadoAnimal,cliente )
-        val resposta = FilaCastracao.add(animal)
+        val resposta = Fachada.registrarPedidoCastracao(animal)
 
         if(!resposta){
             this.telaPedido.msg.setTextColor(Color.RED)

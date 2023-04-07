@@ -3,18 +3,18 @@ package com.app.myapplication.controller
 import android.content.Intent
 import android.graphics.Color
 import androidx.core.view.isVisible
-import com.app.myapplication.model.collection.Usuarios
 import com.app.myapplication.model.entitie.CPF
 import com.app.myapplication.model.entitie.Cartao
 import com.app.myapplication.model.entitie.Email
 import com.app.myapplication.model.entitie.User
-import com.app.myapplication.view.TelaDoacao
+import com.app.myapplication.view.ADM
+import com.app.myapplication.view.TelaHome
 import com.app.myapplication.view.TelaPedido
 import com.app.myapplication.view.TelaUsuario
 
-class ControllerTelaDoacao(tela: TelaDoacao) {
-    var telaDoacao: TelaDoacao = tela
-
+class ControllerTelaHome(tela: TelaHome) {
+    var telaDoacao: TelaHome = tela
+    private var isLoginTela = false
     fun setup(){
         this.telaDoacao.BotaoVoltarCadastro.isVisible = true
         this.telaDoacao.botaoPedidos.isVisible = true
@@ -49,7 +49,11 @@ class ControllerTelaDoacao(tela: TelaDoacao) {
         this.telaDoacao.startActivity(Intent(telaDoacao, TelaPedido::class.java))
     }
 
-    fun login(){
+    fun goToADM(){
+        this.telaDoacao.startActivity(Intent(telaDoacao, ADM::class.java))
+    }
+
+    fun telaLogin(){
         this.telaDoacao.cadastroEmail.isVisible = true
         this.telaDoacao.cadastroSenha.isVisible = true
         this.telaDoacao.cadastroMsg.isVisible = true
@@ -57,10 +61,10 @@ class ControllerTelaDoacao(tela: TelaDoacao) {
         this.telaDoacao.botaoPedidos.isVisible = false
         this.telaDoacao.botaoLogin.isVisible = false
         this.telaDoacao.BotaoConfirmarCadastro.isVisible = true
-
+        isLoginTela = true
     }
 
-    fun cadastro(){
+    fun telaCadastro(){
         this.telaDoacao.cadastroNome.isVisible = true
         this.telaDoacao.cadastroEmail.isVisible = true
         this.telaDoacao.cadastroSenha.isVisible = true
@@ -75,9 +79,18 @@ class ControllerTelaDoacao(tela: TelaDoacao) {
         this.telaDoacao.cadastroCartaoNumero.isVisible = true
         this.telaDoacao.cadastroCartaoValidade.isVisible= true
         this.telaDoacao.cadastroCartaoCod.isVisible = true
+        isLoginTela = false
     }
 
-    fun cadastrarUsuario(){
+    fun confirma(){
+        if(isLoginTela){
+            loginUsuario()
+        }else{
+            cadastrarUsuario()
+        }
+    }
+
+    private fun cadastrarUsuario(){
         val nome = this.telaDoacao.cadastroNome.text.toString()
         val email_ender = this.telaDoacao.cadastroEmail.text.toString()
         val primeira_senha = this.telaDoacao.cadastroSenha.text.toString()
@@ -91,13 +104,29 @@ class ControllerTelaDoacao(tela: TelaDoacao) {
         val email = Email(email_ender)
         val cpf  = CPF(registro)
 
-        val resposta = Usuarios.addUsuario(User(nome, primeira_senha, segunda_senha, email,cartao, cpf))
+        val resposta = Fachada.addUsuario(User(nome, primeira_senha, segunda_senha, email,cartao, cpf))
 
         if (!resposta){
             this.telaDoacao.cadastroMsg.setTextColor(Color.RED)
             this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
         }else{
             this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",nome))
+        }
+    }
+
+    private fun loginUsuario(){
+
+        val email_ender = this.telaDoacao.cadastroEmail.text.toString()
+        val primeira_senha = this.telaDoacao.cadastroSenha.text.toString()
+        val email = Email(email_ender)
+
+        val resposta = Fachada.validarUsuario(User("", primeira_senha, "", email,Cartao("","",""), CPF("")))
+
+        if (!resposta.first){
+            this.telaDoacao.cadastroMsg.setTextColor(Color.RED)
+            this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
+        }else{
+            this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",resposta.second.nome))
         }
     }
 

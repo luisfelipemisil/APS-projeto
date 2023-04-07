@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.TelaDoacao">
+    tools:context=".view.TelaHome">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -176,8 +176,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RelativeLayout
-                android:layout_width="374dp"
-                android:layout_height="65dp">
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
 
                 <Button
                     android:id="@+id/botaoConfirmarCadastro"
@@ -189,15 +189,33 @@
 
                 <Button
                     android:id="@+id/botaoVoltarCadastro"
-                    android:layout_width="wrap_content"
+                    android:layout_width="138dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="53dp"
-                    android:layout_marginEnd="31dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="97dp"
                     android:layout_marginBottom="16dp"
                     android:layout_toStartOf="@+id/botaoConfirmarCadastro"
                     android:text="Voltar" />
+
+                <Button
+                    android:id="@+id/botaoADM"
+                    android:layout_width="110dp"
+                    android:layout_height="67dp"
+                    android:layout_below="@+id/botaoVoltarCadastro"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="152dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="149dp"
+                    android:layout_marginBottom="41dp"
+                    android:text="adm"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="627dp" />
+
             </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 

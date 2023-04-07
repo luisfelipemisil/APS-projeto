@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.app.myapplication.R
-import com.app.myapplication.controller.ControllerTelaDoacao
+import com.app.myapplication.controller.ControllerTelaHome
 
-class TelaDoacao : AppCompatActivity() {
+class TelaHome : AppCompatActivity() {
 
     lateinit var botaoPedidos: Button
     lateinit var botaoLogin: Button
     lateinit var BotaoCadastro: Button
     lateinit var BotaoConfirmarCadastro: Button
     lateinit var BotaoVoltarCadastro: Button
+    lateinit var BotaoADM: Button
 
     lateinit var cadastroNome: TextView
     lateinit var cadastroEmail: TextView
@@ -26,7 +27,9 @@ class TelaDoacao : AppCompatActivity() {
 
     lateinit var cadastroMsg: TextView
 
-    lateinit var controllerDoacao: ControllerTelaDoacao
+    lateinit var controllerDoacao: ControllerTelaHome
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class TelaDoacao : AppCompatActivity() {
         BotaoCadastro = findViewById(R.id.botaoCadastro)
         BotaoConfirmarCadastro = findViewById(R.id.botaoConfirmarCadastro)
         BotaoVoltarCadastro = findViewById(R.id.botaoVoltarCadastro)
+        BotaoADM = findViewById(R.id.botaoADM)
 
         cadastroNome = findViewById(R.id.cadastroNome)
         cadastroEmail = findViewById(R.id.cadastroEmail)
@@ -50,7 +54,7 @@ class TelaDoacao : AppCompatActivity() {
 
         cadastroMsg = findViewById(R.id.cadastroMsg)
 
-        controllerDoacao = ControllerTelaDoacao(this)
+        controllerDoacao = ControllerTelaHome(this)
 
         controllerDoacao.setup()
 
@@ -59,19 +63,25 @@ class TelaDoacao : AppCompatActivity() {
         }
 
         botaoLogin.setOnClickListener {
-            controllerDoacao.login()
+            controllerDoacao.telaLogin()
+
         }
 
         BotaoCadastro.setOnClickListener {
-            controllerDoacao.cadastro()
+            controllerDoacao.telaCadastro()
         }
 
         BotaoConfirmarCadastro.setOnClickListener {
-            controllerDoacao.cadastrarUsuario()
+            controllerDoacao.confirma()
+
         }
 
         BotaoVoltarCadastro.setOnClickListener {
             controllerDoacao.setup()
+        }
+
+        BotaoADM.setOnClickListener {
+            controllerDoacao.goToADM()
         }
     }
 }

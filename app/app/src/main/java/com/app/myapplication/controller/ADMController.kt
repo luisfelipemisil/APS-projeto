@@ -20,7 +20,7 @@ class ADMController(tela: ADM) {
     }
 
     fun goToDoacao(){
-        telaADM.startActivity(Intent(telaADM, TelaDoacao::class.java))
+        telaADM.startActivity(Intent(telaADM, TelaHome::class.java))
     }
 
     fun goToFuncionario(){
