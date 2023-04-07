@@ -3,11 +3,7 @@ package com.app.myapplication.model.collection
 import com.app.myapplication.model.entitie.Animal
 import com.app.myapplication.model.entitie.Cliente
 import com.app.myapplication.model.entitie.Email
-import com.app.myapplication.model.entitie.User
 import com.app.myapplication.model.repository.AbstractFactory
-import com.app.myapplication.model.repository.IRepositorioFilaCastracao
-import com.app.myapplication.model.repository.RepositorioFilaCastracao
-import com.app.myapplication.model.repository.fabricaRepositorioFilaCastracao
 
 class FilaCastracao(fabrica: AbstractFactory){
 
@@ -77,9 +73,9 @@ class FilaCastracao(fabrica: AbstractFactory){
     }
 
     fun validarPedidoDados(animal: Animal):Boolean {
-        if( !animal.cliete.email.isValid()){
+        if( !animal.cliente.email.isValid()){
             return false
-        }else if( animal.cliete.nome.equals("")){
+        }else if( animal.cliente.nome.equals("")){
             return false
         }
         return true

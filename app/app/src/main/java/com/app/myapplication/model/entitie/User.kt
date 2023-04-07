@@ -8,6 +8,7 @@ data class User(
     var cartao: Cartao,
     var cpf: CPF
 ){
+    constructor() : this("", "", "", Email(), Cartao(), CPF())
     fun validarSenhas():Boolean{
         return (senha == segundaSenha)
     }

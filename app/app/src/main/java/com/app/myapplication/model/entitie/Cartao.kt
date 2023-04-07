@@ -5,6 +5,7 @@ data class Cartao (
     var validade: String,
     var codigo: String ){
 
+    constructor(): this("1111 2222 3333 4444", "55/66", "777")
     fun isValid(): Boolean {
         return true
     /*

@@ -10,14 +10,15 @@ data class Animal(
     var filhote: Boolean,
     var endereco: String,
     var descricao: String,
-    var cliete: Cliente
+    var cliente: Cliente
 ){
+    constructor() : this("chocolate", "em espera", 12, "siames", true, false, false, "endereco", "muito bonito", Cliente())
     fun mudarStatus(status: String){
         this.status = status
     }
 
     fun notificarCliente(status: String) {
         // enviar email
-        print(cliete.email.endereco)
+        print(cliente.email.endereco)
     }
 }

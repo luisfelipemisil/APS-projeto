@@ -6,6 +6,7 @@ import com.app.myapplication.model.entitie.User
 
 interface RepositorioUsuario {
 
+    fun setup():Boolean
     fun addUsuario(user: User):Boolean
 
     fun removerUsuario(user: User):Boolean
