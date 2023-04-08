@@ -1,17 +1,24 @@
 package com.app.myapplication.model.collection
 
+import android.content.Context
 import com.app.myapplication.model.entitie.*
 import com.app.myapplication.model.repository.AbstractFactory
 
-class Usuarios(fabrica: AbstractFactory) {
+class Usuarios(fabrica: AbstractFactory, context: Context) {
 
-    val repositorio = fabrica.repositorioUsuario()
+    val repositorio = fabrica.repositorioUsuarioSQLite(context)
+
 
     companion object{
         private var users: MutableList<User> = mutableListOf()
     }
 
+    fun setup():Boolean{
+        return repositorio.setup()
+    }
+
     fun getAllData() :MutableList<User>{
+        repositorio.setup()
         users = repositorio.getAll()
         return users
     }
@@ -34,14 +41,18 @@ class Usuarios(fabrica: AbstractFactory) {
     }
 
     fun addUsuario(usuario: User):Boolean{
+        repositorio.setup()
         if(!validarCadastroDados(usuario)){
+            print("ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ")
             return false
         }
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         users.add(usuario)
         return repositorio.addUsuario(usuario)
     }
 
     fun rmUsuario(email: String):Boolean {
+            repositorio.setup()
             if (repositorio.removerUsuario(email)){
                 print(users)
                 val usuario = users.find { element -> element.email.endereco == email }
@@ -68,6 +79,7 @@ class Usuarios(fabrica: AbstractFactory) {
     }
 
     fun editUsuario(usuario: User):Boolean{
+        repositorio.setup()
         val index = users.indexOf(usuario)
         if(index > 0){
             users.set(index,usuario)

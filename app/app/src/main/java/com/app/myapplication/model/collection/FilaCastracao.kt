@@ -68,7 +68,7 @@ class FilaCastracao(fabrica: AbstractFactory){
     }
 
     fun getAllData() :MutableList<Animal>{
-        fila = repositorio.getAll()
+        //fila = repositorio.getAll()
         return fila
     }
 

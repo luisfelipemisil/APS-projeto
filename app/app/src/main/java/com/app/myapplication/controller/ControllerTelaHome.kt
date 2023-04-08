@@ -15,7 +15,12 @@ import com.app.myapplication.view.TelaUsuario
 class ControllerTelaHome(tela: TelaHome) {
     var telaDoacao: TelaHome = tela
     private var isLoginTela = false
+    val fachada = Fachada(tela)
     fun setup(){
+        val (ok, user) = fachada.hasUser()
+        if (ok){
+            this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome", user.nome))
+        }
         this.telaDoacao.BotaoVoltarCadastro.isVisible = true
         this.telaDoacao.botaoPedidos.isVisible = true
         this.telaDoacao.botaoLogin.isVisible = true
@@ -40,6 +45,7 @@ class ControllerTelaHome(tela: TelaHome) {
         this.telaDoacao.cadastroCartaoNumero.setText("")
         this.telaDoacao.cadastroCartaoValidade.setText("")
         this.telaDoacao.cadastroCartaoCod.setText("")
+
     }
     fun saySomething(){
         this.telaDoacao.cadastroMsg.setText("Olá")
@@ -104,7 +110,7 @@ class ControllerTelaHome(tela: TelaHome) {
         val email = Email(email_ender)
         val cpf  = CPF(registro)
 
-        val resposta = Fachada.addUsuario(User(nome, primeira_senha, segunda_senha, email,cartao, cpf))
+        val resposta = fachada.addUsuario(User(nome, primeira_senha, segunda_senha, email,cartao, cpf))
 
         if (!resposta){
             this.telaDoacao.cadastroMsg.setTextColor(Color.RED)
@@ -120,7 +126,7 @@ class ControllerTelaHome(tela: TelaHome) {
         val primeira_senha = this.telaDoacao.cadastroSenha.text.toString()
         val email = Email(email_ender)
 
-        val resposta = Fachada.validarUsuario(User("", primeira_senha, "", email,Cartao("","",""), CPF("")))
+        val resposta = fachada.validarUsuario(User("", primeira_senha, "", email,Cartao("","",""), CPF("")))
 
         if (!resposta.first){
             this.telaDoacao.cadastroMsg.setTextColor(Color.RED)

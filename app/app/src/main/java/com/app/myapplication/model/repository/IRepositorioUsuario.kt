@@ -1,7 +1,5 @@
 package com.app.myapplication.model.repository
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.app.myapplication.model.entitie.CPF
 import com.app.myapplication.model.entitie.Cartao
 import com.app.myapplication.model.entitie.Email
@@ -10,22 +8,21 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.SQLException
-import kotlin.math.log
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.viewModelFactory
 
-class IRepositorioUsuario : RepositorioUsuario {
+class IRepositorioUsuario() : RepositorioUsuario {
 
-    private val url = "jdbc:postgresql://babar.db.elephantsql.com:5432/dlaqohit"
-    private val usuario = "dlaqohit"
-    private val senha = "xUqzNjU9ifcv4zeV5pms9Z7di1u0U3O0"
+
     private var conection :Connection? =null
+    private var status = false
 
-    init {
-        iniciarConexao()
-    }
-    fun iniciarConexao(): Boolean{
 
+    suspend fun iniciarConexao(): Boolean{
+        val url = "jdbc:postgresql://babar.db.elephantsql.com:5432/dlaqohit"
+        val usuario = "dlaqohit"
+        val senha = "xUqzNjU9ifcv4zeV5pms9Z7di1u0U3O0"
         try {
-            Class.forName("org.postgresql.Driver")
             conection = DriverManager.getConnection(url, usuario, senha)
             return true
         } catch (e: SQLException) {
@@ -34,7 +31,7 @@ class IRepositorioUsuario : RepositorioUsuario {
     }
 
     override fun setup(): Boolean {
-        return (conection != null)
+        TODO()
     }
 
     override fun addUsuario(user: User): Boolean {

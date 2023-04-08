@@ -12,7 +12,7 @@ import com.app.myapplication.view.TelaUsuario
 
 class ControllerTelaPedido(tela: TelaPedido) {
     var telaPedido = tela
-
+    val fachada = Fachada(tela)
     lateinit var nomeCliente :String
     lateinit var emailCliente :String
     lateinit var nomeAnimal :  String
@@ -56,7 +56,7 @@ class ControllerTelaPedido(tela: TelaPedido) {
         val email = Email(emailCliente)
         val cliente = Cliente(nomeCliente, email)
         val animal = Animal(nomeAnimal, "em analise", idadeAnimal.toInt(), racaAnimal, gato, cachorro, filhote, endereco, estadoAnimal,cliente )
-        val resposta = Fachada.registrarPedidoCastracao(animal)
+        val resposta = fachada.registrarPedidoCastracao(animal)
 
         if(!resposta){
             this.telaPedido.msg.setTextColor(Color.RED)

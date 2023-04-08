@@ -6,6 +6,9 @@ import android.widget.Button
 import android.widget.TextView
 import com.app.myapplication.R
 import com.app.myapplication.controller.ControllerTelaHome
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TelaHome : AppCompatActivity() {
 
@@ -72,7 +75,9 @@ class TelaHome : AppCompatActivity() {
         }
 
         BotaoConfirmarCadastro.setOnClickListener {
-            controllerDoacao.confirma()
+            CoroutineScope(Dispatchers.IO).launch {
+                controllerDoacao.confirma()
+            }
 
         }
 

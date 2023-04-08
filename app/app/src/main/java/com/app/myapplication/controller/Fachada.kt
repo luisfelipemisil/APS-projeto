@@ -1,12 +1,14 @@
 package com.app.myapplication.controller
 
+import android.content.Context
 import com.app.myapplication.model.collection.Usuarios
 import com.app.myapplication.model.entitie.Animal
 import com.app.myapplication.model.entitie.User
 
-class Fachada {
+class Fachada(context: Context) {
 
-    companion object {
+
+
         var ctrlUser: ControllerUsuario
         var ctrlVeterinarios: ControllerVeterinario
         var ctrlFilaCastracao: ControllerFilaCastracao
@@ -14,7 +16,7 @@ class Fachada {
         var ctrlFuncionario: ControllerFuncionario
 
         init {
-            ctrlUser = ControllerUsuario()
+            ctrlUser = ControllerUsuario(context)
             ctrlVeterinarios = ControllerVeterinario()
             ctrlFilaCastracao = ControllerFilaCastracao()
             ctrlControAdocao = ControllerAdocao()
@@ -36,6 +38,10 @@ class Fachada {
         fun editarSenhaUsuario(usuarios: User): Boolean {
             return ctrlUser.trocarSenha(usuarios)
         }
+
+
+    fun hasUser():Pair<Boolean, User>{
+        return ctrlUser.hasUser()
     }
 
 
