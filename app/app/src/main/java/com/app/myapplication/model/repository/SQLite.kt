@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 
-class SQLite(context: Context): SQLiteOpenHelper(context, "nossoPet", null, 1) {
+class SQLite(context: Context): SQLiteOpenHelper(context, "nossoPet", null, 2) {
 
     companion object FeedEntry : BaseColumns {
         val DATABASE_NAME = "nossoPet"
-        val TABLE_USER = "users"
+        val TABLE_USER = "user"
         val NOME = "NOME"
         val SENHA = "SENHA"
         val CPF = "CPF"

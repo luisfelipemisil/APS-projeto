@@ -37,7 +37,7 @@ class IRepositorioUsuariosSQLite():RepositorioUsuario {
                 put(SQLite.CPF, user.cpf.registro)
                 put(SQLite.CARTAO_NUMERO, user.cartao.numero)
                 put(SQLite.CARTAO_VALIDADE, user.cartao.validade)
-                put(SQLite.CARTAO_VALIDADE, user.cartao.codigo)
+                put(SQLite.CARTAO_COD, user.cartao.codigo)
             }
             // Insert the new row, returning the primary key value of the new row
             val newRowId = db.insert(SQLite.TABLE_USER, null, values)
@@ -135,7 +135,7 @@ class IRepositorioUsuariosSQLite():RepositorioUsuario {
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
-        val projection = arrayOf(BaseColumns._ID, SQLite.EMAIL, SQLite.SENHA, SQLite.NOME, SQLite.CPF)
+        val projection = arrayOf(BaseColumns._ID, SQLite.EMAIL, SQLite.SENHA, SQLite.NOME, SQLite.CPF, SQLite.CARTAO_VALIDADE, SQLite.CARTAO_NUMERO, SQLite.CARTAO_COD)
 
         // How you want the results sorted in the resulting Cursor
         val sortOrder = "${SQLite.EMAIL} DESC"
@@ -160,8 +160,17 @@ class IRepositorioUsuariosSQLite():RepositorioUsuario {
                 val cartao_num = getString(getColumnIndexOrThrow(SQLite.CARTAO_NUMERO))
                 val cartao_val = getString(getColumnIndexOrThrow(SQLite.CARTAO_VALIDADE))
                 val cartao_cod = getString(getColumnIndexOrThrow(SQLite.CARTAO_COD))
-                val user_ = User(nome, senha, senha, Email(email_), Cartao(cartao_num, cartao_val, cartao_cod), CPF(cpf))
-                users.add(user_)
+                if(nome != null && senha != null && cpf != null && email_ != null && cartao_num != null && cartao_val != null && cartao_cod != null) {
+                    val user_ = User(
+                        nome,
+                        senha,
+                        senha,
+                        Email(email_),
+                        Cartao(cartao_num, cartao_val, cartao_cod),
+                        CPF(cpf)
+                    )
+                    users.add(user_)
+                }
             }
         }
         cursor.close()
