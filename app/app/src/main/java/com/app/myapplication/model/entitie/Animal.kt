@@ -12,7 +12,7 @@ data class Animal(
     var descricao: String,
     var cliente: Cliente
 ){
-    constructor() : this("chocolate", "em espera", 12, "siames", true, false, false, "endereco", "muito bonito", Cliente())
+    constructor() : this("", "", -1, "", true, false, false, "", "", Cliente())
     fun mudarStatus(status: String){
         this.status = status
     }

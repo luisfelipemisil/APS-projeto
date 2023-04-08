@@ -2,7 +2,7 @@ package com.app.myapplication.model.entitie
 
 data class CPF(var registro: String){
 
-    constructor(): this("111.222.333-44")
+    constructor(): this("")
     fun isValid(): Boolean {
         /*
         if (registro.isEmpty()) return false

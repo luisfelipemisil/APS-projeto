@@ -34,41 +34,59 @@ class IRepositorioUsuario : RepositorioUsuario {
         return iniciarConexao()
     }
 
-    override fun addUsuario(s: User): Boolean {
-        TODO()
+    override fun addUsuario(user: User): Boolean {
+        val SQL = "insert into users (cpf,senha,nome,email,cartao_numero,cartao_validade,cartao_cod) values('${user.cpf.registro}', '${user.senha}', '${user.nome}','${user.email.endereco}','${user.cartao.numero}','${user.cartao.validade}', '${user.cartao.codigo}')"
+        val res =  runQueueUser(SQL)
+        return res.first
     }
 
-
     override fun removerUsuario(user: User): Boolean {
-        TODO("Not yet implemented")
+        val SQL = "delete from users where email = '${user.email.endereco}'"
+        val res =  runQueueUser(SQL)
+        return res.first
     }
 
     override fun findUsuario(email: String): Pair<Boolean, User> {
-        TODO("Not yet implemented")
+        val SQL = "select * from users where email = '${email}'"
+        val res =  runQueueUser(SQL)
+        return Pair(res.first, res.second[0])
     }
 
     override fun editUsuario(user: User): Boolean {
-        TODO("Not yet implemented")
+        val SQL = "update users set cpf = '${user.cpf.registro}', senha = '${user.senha}', nome = '${user.nome}', cartao_numero = '${user.cartao.numero}', cartao_validade = '${user.cartao.validade}', cartao_cod = '${user.cartao.codigo}' WHERE email = '${user.email.endereco}'"
+        val res =  runQueueUser(SQL)
+        return res.first
     }
 
     override fun getAll(): MutableList<User> {
         val SQL = "select * from users"
-        var users = mutableListOf<User>()
+        var (_, users) = runQueueUser(SQL)
+        return users
+    }
+
+    private fun runQueueUser(queue:String):Pair<Boolean, MutableList<User>>{
+        val users = mutableListOf<User>()
         try {
             this.conection.use { conn ->
                 if (conn != null) {
-                    conn.prepareStatement(SQL).use { pstmt ->
+                    conn.prepareStatement(queue).use { pstmt ->
                         val rs: ResultSet = pstmt.executeQuery()
                         while (rs.next()) {
                             System.out.println("getAll: nome: ${rs.getString("nome")} senha: ${rs.getString("senha")} senha: ${rs.getString("senha")} email: ${rs.getString("email")} cartao_numero: ${rs.getString("cartao_numero")} cartao_validade: ${rs.getString("cartao_validade")} cartao_cod: ${rs.getString("cartao_cod")} cpf: ${rs.getString("cpf")}")
                             users.add(User(rs.getString("nome"), rs.getString("senha"), rs.getString("senha"), Email(rs.getString("email")), Cartao(rs.getString("cartao_numero"), rs.getString("cartao_validade"), rs.getString("cartao_cod")), CPF(rs.getString("cpf")) ))
                         }
                     }
+                    return Pair(true, users)
+                }else{
+                    return Pair(false, users)
                 }
             }
         } catch (e: SQLException) {
-            print(e.message)
+            print("Error::  ${e.errorCode}")
+            if(e.errorCode == 0){
+                return Pair(true, users)
+            }
+            return Pair(false, users)
         }
-        return users
     }
 }
