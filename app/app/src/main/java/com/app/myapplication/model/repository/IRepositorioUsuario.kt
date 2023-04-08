@@ -19,6 +19,9 @@ class IRepositorioUsuario : RepositorioUsuario {
     private val senha = "xUqzNjU9ifcv4zeV5pms9Z7di1u0U3O0"
     private var conection :Connection? =null
 
+    init {
+        iniciarConexao()
+    }
     fun iniciarConexao(): Boolean{
 
         try {
@@ -31,17 +34,17 @@ class IRepositorioUsuario : RepositorioUsuario {
     }
 
     override fun setup(): Boolean {
-        return iniciarConexao()
+        return (conection != null)
     }
 
     override fun addUsuario(user: User): Boolean {
-        val SQL = "insert into users (cpf,senha,nome,email,cartao_numero,cartao_validade,cartao_cod) values('${user.cpf.registro}', '${user.senha}', '${user.nome}','${user.email.endereco}','${user.cartao.numero}','${user.cartao.validade}', '${user.cartao.codigo}')"
+        val SQL = "insert into users (cpf, senha, nome, email, cartao_numero, cartao_validade, cartao_cod) values('${user.cpf.registro}', '${user.senha}', '${user.nome}','${user.email.endereco}','${user.cartao.numero}','${user.cartao.validade}', '${user.cartao.codigo}')"
         val res =  runQueueUser(SQL)
         return res.first
     }
 
-    override fun removerUsuario(user: User): Boolean {
-        val SQL = "delete from users where email = '${user.email.endereco}'"
+    override fun removerUsuario(email: String): Boolean {
+        val SQL = "delete from users where email = '${email}'"
         val res =  runQueueUser(SQL)
         return res.first
     }
@@ -49,7 +52,7 @@ class IRepositorioUsuario : RepositorioUsuario {
     override fun findUsuario(email: String): Pair<Boolean, User> {
         val SQL = "select * from users where email = '${email}'"
         val res =  runQueueUser(SQL)
-        return Pair(res.first, res.second[0])
+        return Pair(res.first, res.second.first())
     }
 
     override fun editUsuario(user: User): Boolean {
@@ -72,11 +75,11 @@ class IRepositorioUsuario : RepositorioUsuario {
                     conn.prepareStatement(queue).use { pstmt ->
                         val rs: ResultSet = pstmt.executeQuery()
                         while (rs.next()) {
-                            System.out.println("getAll: nome: ${rs.getString("nome")} senha: ${rs.getString("senha")} senha: ${rs.getString("senha")} email: ${rs.getString("email")} cartao_numero: ${rs.getString("cartao_numero")} cartao_validade: ${rs.getString("cartao_validade")} cartao_cod: ${rs.getString("cartao_cod")} cpf: ${rs.getString("cpf")}")
+                            System.out.println("nome: ${rs.getString("nome")} senha: ${rs.getString("senha")} senha: ${rs.getString("senha")} email: ${rs.getString("email")} cartao_numero: ${rs.getString("cartao_numero")} cartao_validade: ${rs.getString("cartao_validade")} cartao_cod: ${rs.getString("cartao_cod")} cpf: ${rs.getString("cpf")}")
                             users.add(User(rs.getString("nome"), rs.getString("senha"), rs.getString("senha"), Email(rs.getString("email")), Cartao(rs.getString("cartao_numero"), rs.getString("cartao_validade"), rs.getString("cartao_cod")), CPF(rs.getString("cpf")) ))
                         }
+                        return Pair(true, users)
                     }
-                    return Pair(true, users)
                 }else{
                     return Pair(false, users)
                 }
@@ -84,6 +87,8 @@ class IRepositorioUsuario : RepositorioUsuario {
         } catch (e: SQLException) {
             print("Error::  ${e.errorCode}")
             if(e.errorCode == 0){
+                return Pair(true, users)
+            }else if(e.errorCode.toString().contains("SUCCESSFUL")){
                 return Pair(true, users)
             }
             return Pair(false, users)

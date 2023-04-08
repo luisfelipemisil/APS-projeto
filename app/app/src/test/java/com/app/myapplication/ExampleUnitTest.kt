@@ -71,7 +71,44 @@ class ExampleUnitTest {
         val repositorio = abstractFactory.repositorioUsuario()
         repositorio.setup()
         val user = User("Luis", "654321", "654321", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
-        val res = repositorio.removerUsuario(user)
+        val res = repositorio.removerUsuario(user.email.endereco)
+        assert(res)
+    }
+
+    @Test
+    fun testAddUser(){
+        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val usuarios = Usuarios(abstractFactory)
+        val user = User("Luis", "654321", "654321", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
+        val res = usuarios.addUsuario(user)
+        assert(res)
+    }
+
+    @Test
+    fun testFindUser(){
+        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val usuarios = Usuarios(abstractFactory)
+        val res = usuarios.findUsuario("luis@gmail.com")
+        println("NOME: ${res.second.nome}")
+        assert(res.first)
+    }
+
+    @Test
+    fun testEditUser(){
+        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val usuarios = Usuarios(abstractFactory)
+        val user = User("Luis", "123456", "123456", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
+        val res = usuarios.editUsuario(user)
+        usuarios.show()
+        assert(res)
+    }
+
+    @Test
+    fun testRmUser(){
+        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val usuarios = Usuarios(abstractFactory)
+        val res = usuarios.rmUsuario("luis@gmail.com")
+        usuarios.show()
         assert(res)
     }
 }

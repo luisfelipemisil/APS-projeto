@@ -9,7 +9,7 @@ interface RepositorioUsuario {
     fun setup():Boolean
     fun addUsuario(user: User):Boolean
 
-    fun removerUsuario(user: User):Boolean
+    fun removerUsuario(email: String):Boolean
 
     fun findUsuario(email: String): Pair<Boolean, User>
 

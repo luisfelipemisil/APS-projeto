@@ -7,11 +7,8 @@ class Usuarios(fabrica: AbstractFactory) {
 
     val repositorio = fabrica.repositorioUsuario()
 
-    init {
-        getAllData()
-    }
     companion object{
-        var users: MutableList<User> = mutableListOf()
+        private var users: MutableList<User> = mutableListOf()
     }
 
     fun getAllData() :MutableList<User>{
@@ -44,36 +41,40 @@ class Usuarios(fabrica: AbstractFactory) {
         return repositorio.addUsuario(usuario)
     }
 
-    fun rmUsuario(cpf: String):Boolean {
-        val (ok, usuario) = findUsuario(cpf)
-        if (ok){
-            if (repositorio.removerUsuario(usuario)){
-                users.remove(usuario)
+    fun rmUsuario(email: String):Boolean {
+            if (repositorio.removerUsuario(email)){
+                print(users)
+                val usuario = users.find { element -> element.email.endereco == email }
+                if (usuario != null) {
+                    users.remove(usuario)
+                }
+                return true
             }else {
                 return false
             }
-        }else{
-            return false
-        }
-        return true
     }
 
-    fun findUsuario(email: String): Pair<Boolean,User>{
-        val (ok, usuario) = repositorio.findUsuario(email)
-        if (ok){
-            return Pair(true, usuario)
+    fun show(){
+        print("SHOW: $users")
+    }
+    fun findUsuario(email: String): Pair<Boolean, User>{
+        getAllData()
+        val res = users.find { element -> element.email.endereco == email}
+
+        if(res != null){
+            return Pair(true, res)
         }
-        return Pair(false, usuario)
+        return Pair(false, User())
     }
 
     fun editUsuario(usuario: User):Boolean{
-        getAllData()
         val index = users.indexOf(usuario)
         if(index > 0){
             users.set(index,usuario)
         }else{
-            return false
+            users.add(usuario)
         }
+
         if(!repositorio.editUsuario(usuario)){
             return false
         }
