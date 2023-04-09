@@ -1,8 +1,9 @@
-package com.app.myapplication.controller
+package com.app.myapplication.controller.telas
 
 import android.content.Intent
 import android.graphics.Color
 import androidx.core.view.isVisible
+import com.app.myapplication.controller.Fachada
 import com.app.myapplication.model.entitie.CPF
 import com.app.myapplication.model.entitie.Cartao
 import com.app.myapplication.model.entitie.Email
@@ -14,7 +15,9 @@ import com.app.myapplication.view.TelaUsuario
 
 class ControllerTelaHome(tela: TelaHome) {
     var telaDoacao: TelaHome = tela
-    private var isLoginTela = false
+    companion object{
+        var isLoginTela = false
+    }
     val fachada = Fachada(tela)
     fun setup(){
         val (ok, user) = fachada.hasUser()
@@ -117,6 +120,7 @@ class ControllerTelaHome(tela: TelaHome) {
             this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
         }else{
             this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",nome))
+
         }
     }
 
@@ -133,6 +137,7 @@ class ControllerTelaHome(tela: TelaHome) {
             this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
         }else{
             this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",resposta.second.nome))
+
         }
     }
 

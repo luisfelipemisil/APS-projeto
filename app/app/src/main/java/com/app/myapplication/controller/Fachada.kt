@@ -18,7 +18,7 @@ class Fachada(context: Context) {
         init {
             ctrlUser = ControllerUsuario(context)
             ctrlVeterinarios = ControllerVeterinario()
-            ctrlFilaCastracao = ControllerFilaCastracao()
+            ctrlFilaCastracao = ControllerFilaCastracao(context)
             ctrlControAdocao = ControllerAdocao()
             ctrlFuncionario = ControllerFuncionario()
         }
@@ -38,6 +38,15 @@ class Fachada(context: Context) {
         fun editarSenhaUsuario(usuarios: User): Boolean {
             return ctrlUser.trocarSenha(usuarios)
         }
+
+    fun logout(usuarios: User){
+        ctrlUser.login(usuarios)
+    }
+
+
+    fun logout(){
+        ctrlUser.logout()
+    }
 
 
     fun hasUser():Pair<Boolean, User>{

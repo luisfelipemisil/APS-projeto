@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import com.app.myapplication.R
-import com.app.myapplication.controller.ControllerTelaHome
+import com.app.myapplication.controller.telas.ControllerTelaHome
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

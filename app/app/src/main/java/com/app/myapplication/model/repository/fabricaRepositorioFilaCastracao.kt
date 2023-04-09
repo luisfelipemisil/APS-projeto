@@ -15,4 +15,8 @@ class fabricaRepositorioFilaCastracao:AbstractFactory {
     override fun repositorioUsuarioSQLite(context: Context): RepositorioUsuario {
         return IRepositorioUsuariosSQLite(context)
     }
+
+    override fun repositorioPedidosSQLite(context: Context): RepositorioPedidos {
+        return IReposirotioPedidosSQLite(context)
+    }
 }

@@ -18,6 +18,15 @@ class ControllerUsuario(context: Context) {
         var user = User()
     }
 
+    fun login(usuario:User){
+        user = usuario
+        logged = true
+    }
+    fun logout(){
+        user = User()
+        logged = false
+    }
+
     fun hasUser():Pair<Boolean, User>{
         return Pair(logged, user)
     }
@@ -37,7 +46,6 @@ class ControllerUsuario(context: Context) {
     fun validarUsuario(usuario: User):Pair<Boolean,User>{
         val (ok, finded_usuario) = usuarios.findUsuario(usuario.email.endereco)
         if(ok){
-            logged = !logged
             user = usuario
         }
         return Pair(ok, finded_usuario)

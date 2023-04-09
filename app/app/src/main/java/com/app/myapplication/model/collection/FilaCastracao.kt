@@ -1,13 +1,14 @@
 package com.app.myapplication.model.collection
 
+import android.content.Context
 import com.app.myapplication.model.entitie.Animal
 import com.app.myapplication.model.entitie.Cliente
 import com.app.myapplication.model.entitie.Email
 import com.app.myapplication.model.repository.AbstractFactory
 
-class FilaCastracao(fabrica: AbstractFactory){
+class FilaCastracao(fabrica: AbstractFactory,context: Context){
 
-    var  repositorio = fabrica.repositorioFilaCastracao()
+    var  repositorio = fabrica.repositorioPedidosSQLite(context )
 
     init {
         getAllData()
@@ -18,7 +19,7 @@ class FilaCastracao(fabrica: AbstractFactory){
 
     fun updateRepositorio(){
         for (animal in fila){
-            repositorio.addAnimal(animal)
+            repositorio.addPedido(animal)
         }
     }
 
@@ -36,7 +37,7 @@ class FilaCastracao(fabrica: AbstractFactory){
         if(!fila.remove(animal)){
             return false
         }
-        if(!repositorio.removerAnimal(animal)){
+        if(!repositorio.removerPedido(animal.nome)){
             return false
         }
         return true
@@ -50,7 +51,7 @@ class FilaCastracao(fabrica: AbstractFactory){
         }else{
             return false
         }
-        if(!repositorio.editAnimal(animal)){
+        if(!repositorio.editPedido(animal)){
             return false
         }
         return true

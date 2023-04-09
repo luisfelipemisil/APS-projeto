@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 
-class SQLite(context: Context): SQLiteOpenHelper(context, "nossoPet", null, 2) {
+class SQLiteUser(context: Context): SQLiteOpenHelper(context, "nossoPet", null, 2) {
 
     companion object FeedEntry : BaseColumns {
         val DATABASE_NAME = "nossoPet"

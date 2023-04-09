@@ -6,8 +6,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import com.app.myapplication.R
-import com.app.myapplication.controller.ControllerTelaPedido
-import org.w3c.dom.Text
+import com.app.myapplication.controller.telas.ControllerTelaPedido
 
 class TelaPedido : AppCompatActivity() {
     lateinit var nomeCliente: TextView
@@ -25,7 +24,7 @@ class TelaPedido : AppCompatActivity() {
     lateinit var botaoEnviar : Button
     lateinit var botaoVoltar : Button
 
-    lateinit var controllerPedido :ControllerTelaPedido
+    lateinit var controllerPedido : ControllerTelaPedido
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_pedido)

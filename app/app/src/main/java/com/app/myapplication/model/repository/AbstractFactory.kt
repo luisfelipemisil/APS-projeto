@@ -6,4 +6,6 @@ interface AbstractFactory {
     fun repositorioFilaCastracao(): RepositorioFilaCastracao
     fun repositorioUsuario(): RepositorioUsuario
     fun repositorioUsuarioSQLite(context: Context): RepositorioUsuario
+
+    fun repositorioPedidosSQLite(context: Context): RepositorioPedidos
 }
