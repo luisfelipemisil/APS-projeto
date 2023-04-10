@@ -32,6 +32,6 @@ class ADMController(tela: ADM) {
     }
 
     fun goToVeterinario(){
-        telaADM.startActivity(Intent(telaADM, TelaVeterinario::class.java))
+        telaADM.startActivity(Intent(telaADM, TelaDoar::class.java))
     }
 }

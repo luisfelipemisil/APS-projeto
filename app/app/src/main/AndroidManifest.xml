@@ -29,7 +29,7 @@
             android:name=".view.TelaPedido"
             android:exported="false" />
         <activity
-            android:name=".view.TelaVeterinario"
+            android:name=".view.TelaDoar"
             android:exported="false" />
         <activity
             android:name=".view.TelaFuncionario"

@@ -14,7 +14,7 @@ import com.app.myapplication.view.TelaPedido
 import com.app.myapplication.view.TelaUsuario
 
 class ControllerTelaHome(tela: TelaHome) {
-    var telaDoacao: TelaHome = tela
+    var telaHome: TelaHome = tela
     companion object{
         var isLoginTela = false
     }
@@ -22,72 +22,72 @@ class ControllerTelaHome(tela: TelaHome) {
     fun setup(){
         val (ok, user) = fachada.hasUser()
         if (ok){
-            this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome", user.nome))
+            this.telaHome.startActivity(Intent(telaHome, TelaUsuario::class.java).putExtra("nome", user.nome))
         }
-        this.telaDoacao.BotaoVoltarCadastro.isVisible = true
-        this.telaDoacao.botaoPedidos.isVisible = true
-        this.telaDoacao.botaoLogin.isVisible = true
-        this.telaDoacao.cadastroNome.isVisible = false
-        this.telaDoacao.cadastroEmail.isVisible = false
-        this.telaDoacao.cadastroSenha.isVisible = false
-        this.telaDoacao.cadastroSegundaSenha.isVisible = false
-        this.telaDoacao.BotaoConfirmarCadastro.isVisible = false
-        this.telaDoacao.cadastroMsg.isVisible = false
-        this.telaDoacao.BotaoVoltarCadastro.isVisible = false
-        this.telaDoacao.BotaoCadastro.isVisible = true
-        this.telaDoacao.cadastroCPF.isVisible = false
-        this.telaDoacao.cadastroCartaoNumero.isVisible = false
-        this.telaDoacao.cadastroCartaoValidade.isVisible= false
-        this.telaDoacao.cadastroCartaoCod.isVisible = false
+        this.telaHome.BotaoVoltarCadastro.isVisible = true
+        this.telaHome.botaoPedidos.isVisible = true
+        this.telaHome.botaoLogin.isVisible = true
+        this.telaHome.cadastroNome.isVisible = false
+        this.telaHome.cadastroEmail.isVisible = false
+        this.telaHome.cadastroSenha.isVisible = false
+        this.telaHome.cadastroSegundaSenha.isVisible = false
+        this.telaHome.BotaoConfirmarCadastro.isVisible = false
+        this.telaHome.cadastroMsg.isVisible = false
+        this.telaHome.BotaoVoltarCadastro.isVisible = false
+        this.telaHome.BotaoCadastro.isVisible = true
+        this.telaHome.cadastroCPF.isVisible = false
+        this.telaHome.cadastroCartaoNumero.isVisible = false
+        this.telaHome.cadastroCartaoValidade.isVisible= false
+        this.telaHome.cadastroCartaoCod.isVisible = false
 
-        this.telaDoacao.cadastroEmail.setText("")
-        this.telaDoacao.cadastroNome.setText("")
-        this.telaDoacao.cadastroSenha.setText("")
-        this.telaDoacao.cadastroSegundaSenha.setText("")
-        this.telaDoacao.cadastroCPF.setText("")
-        this.telaDoacao.cadastroCartaoNumero.setText("")
-        this.telaDoacao.cadastroCartaoValidade.setText("")
-        this.telaDoacao.cadastroCartaoCod.setText("")
+        this.telaHome.cadastroEmail.setText("")
+        this.telaHome.cadastroNome.setText("")
+        this.telaHome.cadastroSenha.setText("")
+        this.telaHome.cadastroSegundaSenha.setText("")
+        this.telaHome.cadastroCPF.setText("")
+        this.telaHome.cadastroCartaoNumero.setText("")
+        this.telaHome.cadastroCartaoValidade.setText("")
+        this.telaHome.cadastroCartaoCod.setText("")
 
     }
     fun saySomething(){
-        this.telaDoacao.cadastroMsg.setText("Olá")
+        this.telaHome.cadastroMsg.setText("Olá")
     }
 
     fun goToPedidos(){
-        this.telaDoacao.startActivity(Intent(telaDoacao, TelaPedido::class.java))
+        this.telaHome.startActivity(Intent(telaHome, TelaPedido::class.java))
     }
 
     fun goToADM(){
-        this.telaDoacao.startActivity(Intent(telaDoacao, ADM::class.java))
+        this.telaHome.startActivity(Intent(telaHome, ADM::class.java))
     }
 
     fun telaLogin(){
-        this.telaDoacao.cadastroEmail.isVisible = true
-        this.telaDoacao.cadastroSenha.isVisible = true
-        this.telaDoacao.cadastroMsg.isVisible = true
-        this.telaDoacao.BotaoVoltarCadastro.isVisible = true
-        this.telaDoacao.botaoPedidos.isVisible = false
-        this.telaDoacao.botaoLogin.isVisible = false
-        this.telaDoacao.BotaoConfirmarCadastro.isVisible = true
+        this.telaHome.cadastroEmail.isVisible = true
+        this.telaHome.cadastroSenha.isVisible = true
+        this.telaHome.cadastroMsg.isVisible = true
+        this.telaHome.BotaoVoltarCadastro.isVisible = true
+        this.telaHome.botaoPedidos.isVisible = false
+        this.telaHome.botaoLogin.isVisible = false
+        this.telaHome.BotaoConfirmarCadastro.isVisible = true
         isLoginTela = true
     }
 
     fun telaCadastro(){
-        this.telaDoacao.cadastroNome.isVisible = true
-        this.telaDoacao.cadastroEmail.isVisible = true
-        this.telaDoacao.cadastroSenha.isVisible = true
-        this.telaDoacao.cadastroSegundaSenha.isVisible = true
-        this.telaDoacao.cadastroMsg.isVisible = true
-        this.telaDoacao.BotaoVoltarCadastro.isVisible = true
-        this.telaDoacao.botaoPedidos.isVisible = false
-        this.telaDoacao.botaoLogin.isVisible = false
-        this.telaDoacao.BotaoCadastro.isVisible = false
-        this.telaDoacao.BotaoConfirmarCadastro.isVisible = true
-        this.telaDoacao.cadastroCPF.isVisible = true
-        this.telaDoacao.cadastroCartaoNumero.isVisible = true
-        this.telaDoacao.cadastroCartaoValidade.isVisible= true
-        this.telaDoacao.cadastroCartaoCod.isVisible = true
+        this.telaHome.cadastroNome.isVisible = true
+        this.telaHome.cadastroEmail.isVisible = true
+        this.telaHome.cadastroSenha.isVisible = true
+        this.telaHome.cadastroSegundaSenha.isVisible = true
+        this.telaHome.cadastroMsg.isVisible = true
+        this.telaHome.BotaoVoltarCadastro.isVisible = true
+        this.telaHome.botaoPedidos.isVisible = false
+        this.telaHome.botaoLogin.isVisible = false
+        this.telaHome.BotaoCadastro.isVisible = false
+        this.telaHome.BotaoConfirmarCadastro.isVisible = true
+        this.telaHome.cadastroCPF.isVisible = true
+        this.telaHome.cadastroCartaoNumero.isVisible = true
+        this.telaHome.cadastroCartaoValidade.isVisible= true
+        this.telaHome.cadastroCartaoCod.isVisible = true
         isLoginTela = false
     }
 
@@ -100,14 +100,14 @@ class ControllerTelaHome(tela: TelaHome) {
     }
 
     private fun cadastrarUsuario(){
-        val nome = this.telaDoacao.cadastroNome.text.toString()
-        val email_ender = this.telaDoacao.cadastroEmail.text.toString()
-        val primeira_senha = this.telaDoacao.cadastroSenha.text.toString()
-        val segunda_senha = this.telaDoacao.cadastroSegundaSenha.text.toString()
-        val registro = this.telaDoacao.cadastroCPF.text.toString()
-        val cartaoNumero = this.telaDoacao.cadastroCartaoNumero.text.toString()
-        val cartaoValidade = this.telaDoacao.cadastroCartaoValidade.text.toString()
-        val cartaoCod = this.telaDoacao.cadastroCartaoCod.text.toString()
+        val nome = this.telaHome.cadastroNome.text.toString()
+        val email_ender = this.telaHome.cadastroEmail.text.toString()
+        val primeira_senha = this.telaHome.cadastroSenha.text.toString()
+        val segunda_senha = this.telaHome.cadastroSegundaSenha.text.toString()
+        val registro = this.telaHome.cadastroCPF.text.toString()
+        val cartaoNumero = this.telaHome.cadastroCartaoNumero.text.toString()
+        val cartaoValidade = this.telaHome.cadastroCartaoValidade.text.toString()
+        val cartaoCod = this.telaHome.cadastroCartaoCod.text.toString()
 
         val cartao = Cartao(cartaoNumero, cartaoValidade, cartaoCod)
         val email = Email(email_ender)
@@ -116,27 +116,27 @@ class ControllerTelaHome(tela: TelaHome) {
         val resposta = fachada.addUsuario(User(nome, primeira_senha, segunda_senha, email,cartao, cpf))
 
         if (!resposta){
-            this.telaDoacao.cadastroMsg.setTextColor(Color.RED)
-            this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
+            this.telaHome.cadastroMsg.setTextColor(Color.RED)
+            this.telaHome.cadastroMsg.setText("ERRO, tem algum dado errado")
         }else{
-            this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",nome))
+            this.telaHome.startActivity(Intent(telaHome, TelaUsuario::class.java).putExtra("nome",nome))
 
         }
     }
 
     private fun loginUsuario(){
 
-        val email_ender = this.telaDoacao.cadastroEmail.text.toString()
-        val primeira_senha = this.telaDoacao.cadastroSenha.text.toString()
+        val email_ender = this.telaHome.cadastroEmail.text.toString()
+        val primeira_senha = this.telaHome.cadastroSenha.text.toString()
         val email = Email(email_ender)
 
         val resposta = fachada.validarUsuario(User("", primeira_senha, "", email,Cartao("","",""), CPF("")))
 
         if (!resposta.first){
-            this.telaDoacao.cadastroMsg.setTextColor(Color.RED)
-            this.telaDoacao.cadastroMsg.setText("ERRO, tem algum dado errado")
+            this.telaHome.cadastroMsg.setTextColor(Color.RED)
+            this.telaHome.cadastroMsg.setText("ERRO, tem algum dado errado")
         }else{
-            this.telaDoacao.startActivity(Intent(telaDoacao, TelaUsuario::class.java).putExtra("nome",resposta.second.nome))
+            this.telaHome.startActivity(Intent(telaHome, TelaUsuario::class.java).putExtra("nome",resposta.second.nome))
 
         }
     }

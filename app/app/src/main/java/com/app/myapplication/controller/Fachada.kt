@@ -1,7 +1,6 @@
 package com.app.myapplication.controller
 
 import android.content.Context
-import com.app.myapplication.model.collection.Usuarios
 import com.app.myapplication.model.entitie.Animal
 import com.app.myapplication.model.entitie.User
 
@@ -10,14 +9,14 @@ class Fachada(context: Context) {
 
 
         var ctrlUser: ControllerUsuario
-        var ctrlVeterinarios: ControllerVeterinario
+        var ctrlDoar: ControllerDoar
         var ctrlFilaCastracao: ControllerFilaCastracao
         var ctrlControAdocao: ControllerAdocao
         var ctrlFuncionario: ControllerFuncionario
 
         init {
             ctrlUser = ControllerUsuario(context)
-            ctrlVeterinarios = ControllerVeterinario()
+            ctrlDoar = ControllerDoar()
             ctrlFilaCastracao = ControllerFilaCastracao(context)
             ctrlControAdocao = ControllerAdocao()
             ctrlFuncionario = ControllerFuncionario()
@@ -38,6 +37,10 @@ class Fachada(context: Context) {
         fun editarSenhaUsuario(usuarios: User): Boolean {
             return ctrlUser.trocarSenha(usuarios)
         }
+
+    fun doar(valor: Double): Boolean{
+        return ctrlDoar.doar(valor)
+    }
 
     fun logout(usuarios: User){
         ctrlUser.login(usuarios)

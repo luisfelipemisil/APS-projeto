@@ -35,6 +35,8 @@ class ControllerUsuario(context: Context) {
         return usuarios.addUsuario(usuario)
     }
 
+
+
     fun trocarSenha(usuario: User):Boolean{
         return usuarios.editUsuario(usuario)
     }
