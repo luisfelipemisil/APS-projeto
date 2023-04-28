@@ -3,11 +3,10 @@ package com.app.myapplication.controller
 import android.content.Context
 import com.app.myapplication.model.collection.FilaCastracao
 import com.app.myapplication.model.entitie.Animal
-import com.app.myapplication.model.repository.AbstractFactory
-import com.app.myapplication.model.repository.fabricaRepositorioFilaCastracao
+import com.app.myapplication.model.repository.fabricaRepositorioSqlit
 
 class ControllerFilaCastracao(context: Context) {
-    var abstractFactory = fabricaRepositorioFilaCastracao()
+    var abstractFactory = fabricaRepositorioSqlit()
     var filaCastracao = FilaCastracao(abstractFactory, context)
 
     fun registrarPedido(animal:Animal): Boolean{

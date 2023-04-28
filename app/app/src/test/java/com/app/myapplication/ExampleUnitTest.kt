@@ -6,7 +6,7 @@ import com.app.myapplication.model.entitie.CPF
 import com.app.myapplication.model.entitie.Cartao
 import com.app.myapplication.model.entitie.Email
 import com.app.myapplication.model.entitie.User
-import com.app.myapplication.model.repository.fabricaRepositorioFilaCastracao
+import com.app.myapplication.model.repository.fabricaRepositorioSqlit
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,7 +25,7 @@ import org.robolectric.annotation.Config
 class ExampleUnitTest {
     @Test
     fun testeRepositoryConnection(){
-        var abstractFactory = fabricaRepositorioFilaCastracao()
+        var abstractFactory = fabricaRepositorioSqlit()
         val mockContext: Context = Mockito.mock(Context::class.java)
         val repositorio = abstractFactory.repositorioUsuarioSQLite(mockContext)
         val res = repositorio.setup()
@@ -34,7 +34,7 @@ class ExampleUnitTest {
 
     @Test
     fun testAdduserRepositorio(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val mockContext: Context = Mockito.mock(Context::class.java)
         val repositorio = abstractFactory.repositorioUsuarioSQLite(mockContext)
         repositorio.setup()
@@ -45,7 +45,7 @@ class ExampleUnitTest {
 
     @Test
     fun testEditUserRepositorio(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val repositorio = abstractFactory.repositorioUsuario()
         repositorio.setup()
         val user = User("Luis", "654321", "654321", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
@@ -55,7 +55,7 @@ class ExampleUnitTest {
 
     @Test
     fun testFindUserRepositorio(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val repositorio = abstractFactory.repositorioUsuario()
         repositorio.setup()
         val res = repositorio.findUsuario("luis@gmail.com")
@@ -64,7 +64,7 @@ class ExampleUnitTest {
 
     @Test
     fun testGetAllUsersRepositorio(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val repositorio = abstractFactory.repositorioUsuario()
         repositorio.setup()
         val res = repositorio.getAll()
@@ -74,7 +74,7 @@ class ExampleUnitTest {
 
     @Test
     fun testFindDeleteRepositorio(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val repositorio = abstractFactory.repositorioUsuario()
         repositorio.setup()
         val user = User("Luis", "654321", "654321", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
@@ -84,7 +84,7 @@ class ExampleUnitTest {
 
     @Test
     fun testAddUser(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val mockContext: Context = Mockito.mock(Context::class.java)
         val usuarios = Usuarios(abstractFactory,mockContext)
         val user = User("Luis", "654321", "654321", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
@@ -94,7 +94,7 @@ class ExampleUnitTest {
 
     @Test
     fun testFindUser(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val mockContext: Context = Mockito.mock(Context::class.java)
         val usuarios = Usuarios(abstractFactory,mockContext )
         val res = usuarios.findUsuario("luis@gmail.com")
@@ -104,7 +104,7 @@ class ExampleUnitTest {
 
     @Test
     fun testEditUser(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val mockContext: Context = Mockito.mock(Context::class.java)
         val usuarios = Usuarios(abstractFactory, mockContext)
         val user = User("Luis", "123456", "123456", Email("luis@gmail.com"), Cartao("1", "1", "1"), CPF("1"))
@@ -115,7 +115,7 @@ class ExampleUnitTest {
 
     @Test
     fun testRmUser(){
-        val abstractFactory = fabricaRepositorioFilaCastracao()
+        val abstractFactory = fabricaRepositorioSqlit()
         val mockContext: Context = Mockito.mock(Context::class.java)
         val usuarios = Usuarios(abstractFactory, mockContext)
         val res = usuarios.rmUsuario("luis@gmail.com")

@@ -4,10 +4,25 @@ import com.app.myapplication.model.entitie.Animal
 import com.app.myapplication.model.entitie.CPF
 import com.app.myapplication.model.entitie.User
 
-class IRepositorioFilaCastracao: RepositorioFilaCastracao {
+class IRepositorioFilaCastracao: RepositorioPedidos {
 
+    override fun setup(): Boolean {
+        TODO("Not yet implemented")
+    }
 
-    override fun editAnimal(animal: Animal): Boolean {
+    override fun addPedido(ficha: Animal): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun removerPedido(nome: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun findPedido(nome: String): Pair<Boolean, Animal> {
+        TODO("Not yet implemented")
+    }
+
+    override fun editPedido(ficha: Animal): Boolean {
         TODO("Not yet implemented")
     }
 
@@ -15,16 +30,5 @@ class IRepositorioFilaCastracao: RepositorioFilaCastracao {
         TODO("Not yet implemented")
     }
 
-    override fun findAnimal(animal: Animal): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun addAnimal(animal: Animal): Boolean {
-        return false
-    }
-
-    override fun removerAnimal(animal: Animal): Boolean {
-        TODO("Not yet implemented")
-    }
 
 }

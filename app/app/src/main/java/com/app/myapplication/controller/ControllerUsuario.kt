@@ -1,16 +1,13 @@
 package com.app.myapplication.controller
 
 import android.content.Context
-import com.app.myapplication.model.collection.FilaCastracao
 import com.app.myapplication.model.collection.Usuarios
-import com.app.myapplication.model.entitie.Animal
 import com.app.myapplication.model.entitie.User
-import com.app.myapplication.model.repository.fabricaRepositorioFilaCastracao
-import kotlin.math.log
+import com.app.myapplication.model.repository.fabricaRepositorioSqlit
 
 class ControllerUsuario(context: Context) {
 
-    var abstractFactory = fabricaRepositorioFilaCastracao()
+    var abstractFactory = fabricaRepositorioSqlit()
     var usuarios = Usuarios(abstractFactory,context )
 
     companion object {
